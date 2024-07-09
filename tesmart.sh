@@ -90,7 +90,7 @@ send_cmd() {
     host_ip="$(resolve_host "$TESMART_HOST")"
   fi
 
-  echo -ne "$@" | _nc "$host_ip" "$TESMART_PORT"
+  cat <(echo -ne "$@") <(sleep .1) | _nc "$host_ip" "$TESMART_PORT"
 }
 
 send_cmd_retry() {
@@ -120,7 +120,8 @@ send_cmd_retry() {
         ;;
     esac
   done
-
+  
+  export LC_CTYPE=C
   while [[ "$try" -lt "$retries" ]]
   do
     try=$(( try + 1 ))
@@ -129,8 +130,8 @@ send_cmd_retry() {
     if [[ -n "$DEBUG" ]]
     then
       {
-        echo "Raw output: $(cat -vE <<< "$res")"
-        echo "Printable output: \"$(tr -dc '[:print:]' <<< "$res" | cat -vE)\""
+        echo "Raw output: $(cat -ve <<< "$res")"
+        echo "Printable output: \"$(tr -dc '[:print:]' <<< "$res" | cat -ve)\""
       } >&2
     fi
 
