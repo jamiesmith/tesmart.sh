@@ -1,0 +1,12 @@
+#!/bin/sh
+
+TESMART_DIR=${TESMART_DIR:-~/Projects/GitRepo/tesmart.sh}
+
+if [ ! -d "$TESMART_DIR" ] 
+then
+    echo "TESMART_DIR [$TESMART_DIR] not found, exiting"
+    exit 9
+fi
+
+cd $TESMART_DIR
+./tesmart.sh $@

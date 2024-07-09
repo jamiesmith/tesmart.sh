@@ -14,6 +14,7 @@ This has only been tested with the [8-PORT HDMI 1.4 4K 30HZ](https://buytesmart.
 - hexdump
 - netcat
 - sed
+- On Mac, `brew install nmap`
 
 ## Installation
 
