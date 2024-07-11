@@ -1,6 +1,7 @@
 #!/bin/sh
 
 command=$0
+date >> /tmp/foo
 
 tmp=${command%*.sh}
 input=${tmp##*-}
